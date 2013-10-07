@@ -1,4 +1,4 @@
 cognition-ignition
 ==================
 
-Global warming analytics with Incanter on Big Data.
+Machine Learning with Clojure using Weka library.
