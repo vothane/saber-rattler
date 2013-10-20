@@ -1,5 +1,7 @@
 (ns cognition-ignition.core)
 
+(use '(incanter core))
+
 (defn foo
   "I don't do a whole lot."
   [x]
