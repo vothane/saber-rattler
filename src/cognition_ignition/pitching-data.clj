@@ -7,8 +7,8 @@
 (defn load-data
   [url]
   (let [html    (html/html-resource (URL. url))
-        table   (html/select html [:table#data])
-        headers (->> (html/select table [:tr :th])
+        table   (html/select html [:table.table])
+        headers (->> (html/select table [:thead :tr])
                   (map html/text)
                   (map to-keyword)
                   vec)
@@ -16,4 +16,4 @@
                   (map #(html/select % [:td]))
                   (map #(map html/text %))
                   (filter seq))]
-    (dataset headers rows)))
+  (dataset headers rows)))
