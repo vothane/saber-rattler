@@ -1,4 +1,4 @@
 cognition-ignition
 ==================
 
-Machine Learning with Clojure using Weka library.
+Machine Learning with Clojure using Weka library. Will analyze pitchers in the MLB using data from PITCHf/x. 
