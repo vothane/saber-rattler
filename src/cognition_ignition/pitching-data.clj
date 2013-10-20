@@ -12,7 +12,7 @@
                      (map html/text)
                      (map to-keyword)
                      vec)
-        rows    (->> (html/select table [:tr])
+        rows    (->> (html/select table [:tbody :tr])
                      (map #(html/select % [:td]))
                      (map #(map html/text %))
                      (filter seq))]
