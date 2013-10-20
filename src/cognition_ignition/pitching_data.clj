@@ -1,4 +1,4 @@
-(ns pitching-data
+(ns cognition-ignition.pitching-data
   (:require [clojure.string :as string]
             [net.cgrand.enlive-html :as html])
   (:use [incanter.core])
@@ -10,7 +10,6 @@
         table   (html/select html [:table.table])
         headers (->> (html/select table [:thead :tr :th])
                      (map html/text)
-                     (map to-keyword)
                      vec)
         rows    (->> (html/select table [:tbody :tr])
                      (map #(html/select % [:td]))

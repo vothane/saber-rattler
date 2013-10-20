@@ -1,8 +1,3 @@
-(ns cognition-ignition.core)
-
-(use '(incanter core))
-
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(ns cognition-ignition.core
+  (:use [incanter.core]
+        [cognition-ignition.pitching-data]))
