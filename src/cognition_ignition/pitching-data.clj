@@ -8,12 +8,12 @@
   [url]
   (let [html    (html/html-resource (URL. url))
         table   (html/select html [:table.table])
-        headers (->> (html/select table [:thead :tr])
-                  (map html/text)
-                  (map to-keyword)
-                  vec)
+        headers (->> (html/select table [:thead :tr :th])
+                     (map html/text)
+                     (map to-keyword)
+                     vec)
         rows    (->> (html/select table [:tr])
-                  (map #(html/select % [:td]))
-                  (map #(map html/text %))
-                  (filter seq))]
+                     (map #(html/select % [:td]))
+                     (map #(map html/text %))
+                     (filter seq))]
   (dataset headers rows)))
