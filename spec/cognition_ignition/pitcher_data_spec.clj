@@ -17,6 +17,6 @@
     (should= 11 (nrow pitch-data)))
 
   (it "should read six columns."
-    (should= 6 (ncol pitch-data))))
+    (should=  6 (ncol pitch-data))))
 
 (run-specs)
