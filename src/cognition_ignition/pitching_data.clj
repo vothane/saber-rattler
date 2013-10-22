@@ -4,10 +4,16 @@
   (:use [incanter.core])
   (:import [java.net URL]))
 
+(defn to-keyword [input]
+  (-> input
+      string/lower-case
+      (string/replace \space \-)
+      keyword))
 
 (defn get-headers [table]
   (->> (html/select table [:thead :tr :th])
        (map html/text)
+       (map to-keyword)
         vec))
 
 (defn get-rows [table]

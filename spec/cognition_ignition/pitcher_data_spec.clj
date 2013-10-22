@@ -11,7 +11,7 @@
   
   "The web table scraper"
   (it "should pull column names from the table columns."
-    (should= ["Game" "Fourseam" "Sinker" "Change" "Curve" "Cutter"] (col-names pitch-data)))
+    (should= [:game :fourseam :sinker :change :curve :cutter] (col-names pitch-data)))
 
   (it "should read eleven data rows."
     (should= 11 (nrow pitch-data)))
