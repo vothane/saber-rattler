@@ -26,5 +26,5 @@
   (let [html    (html/html-resource (URL. url))
         table   (html/select html [:table.table])
         headers (get-headers table)
-        rows    (get-rows table)]
+        rows    (remove (fn [col] (= "Game" (first col))) (get-rows table))]
     (dataset headers rows)))

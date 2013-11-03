@@ -14,7 +14,7 @@
     (should= [:game :fourseam :sinker :change :curve :cutter] (col-names pitch-data)))
 
   (it "should read eleven data rows."
-    (should= 219 (nrow pitch-data)))
+    (should= 213 (nrow pitch-data)))
 
   (it "should read six columns."
     (should=  6 (ncol pitch-data))))
