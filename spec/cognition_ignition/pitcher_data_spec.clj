@@ -7,16 +7,15 @@
 
 (def pitch-data (load-data *data-url*))
 
-(describe
+(describe "The web table scraper"
   
-  "The web table scraper"
   (it "should pull column names from the table columns."
     (should= [:game :fourseam :sinker :change :curve :cutter] (col-names pitch-data)))
 
   (it "should read eleven data rows."
-    (should= 213 (nrow pitch-data)))
+    (should= 210 (nrow pitch-data)))
 
   (it "should read six columns."
-    (should=  6 (ncol pitch-data))))
+    (should=   6 (ncol pitch-data))))
 
 (run-specs)
