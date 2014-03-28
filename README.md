@@ -1,4 +1,4 @@
-cognition-ignition
+saber-rattler
 ==================
 
 Machine Learning with Clojure using Weka library. Will analyze pitchers in the MLB using data from PITCHf/x. 
@@ -9,4 +9,4 @@ have leiningen installed
 
 `lein deps`
 
-`lein spec`
+`lein test`

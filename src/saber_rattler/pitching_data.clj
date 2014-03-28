@@ -1,4 +1,4 @@
-(ns cognition-ignition.pitching-data
+(ns saber-rattler.pitching-data
   (:require [clojure.string :as string]
             [net.cgrand.enlive-html :as html])
   (:use [incanter.core])

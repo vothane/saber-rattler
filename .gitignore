@@ -1,11 +1,5 @@
-pom.xml
-*jar
-/lib/
-/classes/
-/targets/
-.lein-deps-sum
-
 /target
+/classes
 /checkouts
 pom.xml
 pom.xml.asc
@@ -13,4 +7,3 @@ pom.xml.asc
 *.class
 /.lein-*
 /.nrepl-port
-.idea
