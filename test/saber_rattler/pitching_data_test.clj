@@ -11,8 +11,9 @@
 
 (def game-log-data (game-log-converter Jon-Lester-logs Jon-Lester-pitches))
 
-(doall (map println game-log-data))
-(println (str "count >>>> " (count game-log-data)))
-;(game-log-converter (get-game-logs *data-url*) Jon-Lester-pitches)
-;(def game-log-data (first (game-log-converter (get-game-logs *data-url*) Jon-Lester-pitches)))
+(def query-data (reduce (fn [arr el] (apply conj arr (take (count el) el))) [] 
+                  (map (fn [game] (map vec game)) game-log-data)))
 
+
+(?<- (stdout) [?game ?pitch ?num]
+  (query-data ?game ?pitch ?num) (= ?pitch ":sinker"))
