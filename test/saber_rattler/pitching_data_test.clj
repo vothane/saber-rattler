@@ -16,4 +16,3 @@
 ;(game-log-converter (get-game-logs *data-url*) Jon-Lester-pitches)
 ;(def game-log-data (first (game-log-converter (get-game-logs *data-url*) Jon-Lester-pitches)))
 
-
