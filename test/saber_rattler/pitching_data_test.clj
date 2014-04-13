@@ -16,4 +16,4 @@
 
 
 (?<- (stdout) [?game ?pitch ?num]
-  (query-data ?game ?pitch ?num) (= ?pitch ":sinker"))
+  (query-data ?game ?pitch ?num) (= ?pitch :sinker))
