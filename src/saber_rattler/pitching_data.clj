@@ -4,30 +4,14 @@
   (:use [incanter.core])
   (:import [java.net URL]))
 
-(defn get-game-logs [url]
-  (let [html  (html/html-resource (URL. url))
-        table (html/select html [:table.table])
-        raw   (->> (html/select table [:tr])
-                   (map #(html/select % [:td]))
-                   (map #(map html/text %)))
-        data  (filter seq raw)]
-    (remove (fn [col] (= "Game" (first col))) data)))
-
-(defn get-pitcher-repertoire [url]
+(defn headers->categories [url]
   (let [html  (html/html-resource (URL. url))
         table (html/select html [:table.table])
         data  (->> (html/select table [:thead :tr :th])
                    (map html/text))]
     (rest data)))
 
-(defn get-outcome-metric [url]
-  (let [html  (html/html-resource (URL. url))
-        table (html/select html [:table.table])
-        data  (->> (html/select table [:thead :tr :th])
-                   (map html/text))]
-    (rest data)))
-
-(defn get-pitch-outcomes [url]
+(defn table->data [url]
   (let [html  (html/html-resource (URL. url))
         table (html/select html [:table.table])
         raw   (->> (html/select table [:tr])
