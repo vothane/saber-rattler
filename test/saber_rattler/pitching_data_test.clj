@@ -7,22 +7,24 @@
 (def ^:dynamic *game-logs-url* "http://www.brooksbaseball.net/tabs.php?player=452657&gFilt=&time=month&minmax=ci&var=gl&s_type=2&startDate=03/30/2007&endDate=10/20/2013&balls=-1&strikes=-1&b_hand=-1")
 (def ^:dynamic *pitch-outcomes-url* "http://www.brooksbaseball.net/tabs.php?player=452657&p_hand=-1&ppos=-1&cn=200&gFilt=&time=month&minmax=ci&var=po&s_type=2&startDate=03/30/2007&endDate=10/20/2013&balls=-1&strikes=-1&b_hand=-1")
 
+(defn make-queryable [data]
+  (reduce (fn [arr el] (apply conj arr (take (count el) el))) [] 
+    (map (fn [row] (map vec row)) data)))
+
 (def Jon-Lester-pitches (get-pitcher-repertoire *game-logs-url*))
 (def Jon-Lester-logs (get-game-logs *game-logs-url*))
 
-(def game-log-data (game-log-converter Jon-Lester-logs Jon-Lester-pitches))
+(def game-log-data (data-converter Jon-Lester-pitches Jon-Lester-logs))
 
-(def query-logs (reduce (fn [arr el] (apply conj arr (take (count el) el))) [] 
-                  (map (fn [game] (map vec game)) game-log-data)))
+(def query-logs (make-queryable game-log-data))
+
 
 (def pitch-metrics (get-outcome-metric *pitch-outcomes-url*))
 (def Jon-Lester-stats (get-pitch-outcomes *pitch-outcomes-url*))
 
-(def game-metrics-data (pitch-matrics-converter Jon-Lester-stats pitch-metrics))
+(def game-metrics-data (data-converter pitch-metrics Jon-Lester-stats))
 
-
-(def query-metrics (reduce (fn [arr el] (apply conj arr (take (count el) el))) [] 
-                     (map (fn [metric] (map vec metric)) game-metrics-data)))
+(def query-metrics (make-queryable game-metrics-data))
 
 (?<- (stdout) [?game ?pitch ?metric ?stat]
-  (query-logs ?game ?pitch ?num) (query-metrics ?pitch ?metric ?stat) (= ?pitch :cutter))
+  (query-logs ?game ?pitch ?num) (query-metrics ?pitch ?metric ?stat) (= ?pitch "Cutter"))

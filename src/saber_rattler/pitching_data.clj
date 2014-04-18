@@ -13,28 +13,12 @@
         data  (filter seq raw)]
     (remove (fn [col] (= "Game" (first col))) data)))
 
-(defn to-keyword [input]
-  (-> input
-      string/lower-case 
-      (string/replace \space \-)
-      keyword))
-
 (defn get-pitcher-repertoire [url]
   (let [html  (html/html-resource (URL. url))
         table (html/select html [:table.table])
         data  (->> (html/select table [:thead :tr :th])
                    (map html/text))]
-    (rest (map to-keyword data))))
-
-(defn- group-by-pitch [repertoire log]
-  (let [game            (first log)
-        pitches-by-game (rest log)
-        groupings       (partition 2 2 (interleave repertoire pitches-by-game))]
-    (map #(cons game %) groupings)))
-  
-(defn game-log-converter [game-logs pitcher-repertoire]
-  (let [pitch-categorizer (partial group-by-pitch pitcher-repertoire)]       
-    (map pitch-categorizer game-logs)))
+    (rest data)))
 
 (defn get-outcome-metric [url]
   (let [html  (html/html-resource (URL. url))
@@ -51,14 +35,12 @@
                    (map #(map html/text %)))]
     (filter seq raw)))
 
-(defn- group-by-metric [metrics stats]
-  (let [pitch     (first stats)
-        stat-data (rest stats)
-        groupings (partition 2 2 (interleave metrics stat-data))]
-    (map #(cons (to-keyword pitch) %) groupings)))
+(defn- group-by-category [categories data]
+  (let [category  (first data)
+        stat-data (rest data)
+        groupings (partition 2 2 (interleave categories stat-data))]
+    (map #(cons category %) groupings)))
 
-(defn pitch-matrics-converter [stats metrics]
-  (let [metrics-categorizer (partial group-by-metric metrics)]       
-    (map metrics-categorizer stats)))
-
-;; TODO: lots of duplication above refactor
+(defn data-converter [ids data]
+  (let [categorizer (partial group-by-category ids)]       
+    (map categorizer data)))
