@@ -8,7 +8,7 @@
 (def ^:dynamic *pitch-outcomes-url* "http://www.brooksbaseball.net/tabs.php?player=452657&p_hand=-1&ppos=-1&cn=200&gFilt=&time=month&minmax=ci&var=po&s_type=2&startDate=03/30/2007&endDate=10/20/2013&balls=-1&strikes=-1&b_hand=-1")
 
 (defn make-queryable [data]
-  (reduce (fn [arr el] (apply conj arr (take (count el) el))) [] 
+  (reduce (fn [arr el] (apply conj arr (doall el))) [] 
     (map (fn [row] (map vec row)) data)))
 
 (def Jon-Lester-pitches (remove (fn [col] (= "Game" (first col))) 
