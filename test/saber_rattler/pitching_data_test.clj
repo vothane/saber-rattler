@@ -29,5 +29,5 @@
 
 ;;----------------------------------------------------------------------------------------
 
-(?<- (stdout) [?game ?pitch ?metric ?stat]
-  (query-logs ?game ?pitch ?num) (query-metrics ?pitch ?metric ?stat) (= ?pitch "Cutter"))
+;(?<- (stdout) [?game ?pitch ?metric ?stat]
+;  (query-logs ?game ?pitch ?num) (query-metrics ?pitch ?metric ?stat) (= ?pitch "Cutter"))

@@ -1,7 +1,6 @@
 (ns saber-rattler.pitching-data
   (:require [clojure.string :as string]
             [net.cgrand.enlive-html :as html])
-  (:use [incanter.core])
   (:import [java.net URL]))
 
 (defn headers->categories [url]
