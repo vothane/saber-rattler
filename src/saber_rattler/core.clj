@@ -8,7 +8,6 @@
   #{{:name "Yu Darvish" :key 506433}
     {:name "Clayton Kershaw" :key 477132}
     {:name "Justin Verlander" :key 434378}
-    {:name "Cole Hamels" :key 430935}
     {:name "Tim Lincecum" :key 453311}
     {:name "Jon Lester" :key 452657}
     {:name "Johnny Cueto" :key 456501}
