@@ -44,10 +44,10 @@
 
 (defmacro query? [name & body]
   `(let [~'pitches  (remove '(fn [col] (= "Game" (first col))) (headers->categories (build-url ~name "gl")))
-         ~'logs     (table->data (build-url ~name "gl"))
-         ~'movement (table->data (build-url ~name "traj"))
-         ~'outcomes (table->data (build-url ~name "po"))
-         ~'metrics  (table->data (build-url ~name "so"))
-         ~'averages (table->data (build-url ~name "ra"))]
+         ~'logs     (make-queryable (table->data (build-url ~name "gl")))
+         ~'movement (make-queryable (table->data (build-url ~name "traj")))
+         ~'outcomes (make-queryable (table->data (build-url ~name "po")))
+         ~'metrics  (make-queryable (table->data (build-url ~name "so")))
+         ~'averages (make-queryable (table->data (build-url ~name "ra")))]
     ~@body))
 
