@@ -6,6 +6,6 @@
   :repositories {"conjars" "http://conjars.org/repo"}
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [enlive "1.1.5"]
-                 [cascalog/cascalog-core "2.1.0"]
+                 [cascalog/cascalog-core "2.1.1"]
                  [cascalog-more-taps "0.3.0"]]
   :profiles {:provided {:dependencies [[org.apache.hadoop/hadoop-core "1.2.1"]]}})

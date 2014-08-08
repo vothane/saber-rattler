@@ -35,12 +35,6 @@
 (defn make-queryable [coll]
    (vec (map vec coll)))
 
-(defn get-data [url]
-  (let [pitch-metrics (headers->categories url)
-        stats         (table->data url) 
-        game-metrics  (data-converter pitch-metrics stats)]
-    (make-queryable game-metrics)))
-
 (defmacro query? [name & body]
   `(let [~'pitches  (remove '(fn [col] (= "Game" (first col))) (headers->categories (build-url ~name "gl")))
          ~'logs     (make-queryable (table->data (build-url ~name "gl")))
