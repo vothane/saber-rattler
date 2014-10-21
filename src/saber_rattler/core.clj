@@ -33,7 +33,7 @@
        "&balls=-1&strikes=-1&b_hand=-1"))
 
 (defn make-queryable [coll]
-   (vec (map vec coll)))
+  (vec (map vec coll)))
 
 (defmacro query? [name & body]
   `(let [~'pitches  (remove '(fn [col] (= "Game" (first col))) (headers->categories (build-url ~name "gl")))
